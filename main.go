@@ -55,7 +55,7 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 	fmt.Print("Pick your hunting ground [target IP]: ")
 	fmt.Scanln(&target) // USER INPUT
 
-	startPort, endPort := 22, 443            // starting/ending ports to scan
-	hunters.Hunt(target, startPort, endPort) // invoke and Hunt for eggs
+	startPort, endPort := 22, 443               // starting/ending ports to scan
+	go hunters.Hunt(target, startPort, endPort) // invoke and Hunt for eggs
 
 } // END MAIN
