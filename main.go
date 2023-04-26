@@ -49,7 +49,6 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 	// Emoji Unicodes
 	egg := "\U0001F95A" // egg emoji unicode
 	evil := "\U0001F608"
-	opened := make([]int, 0) // summary of opened ports
 
 	// tool starts
 	fmt.Println(asset.Red(warning1))
@@ -63,14 +62,4 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 	startPort, endPort := 22, 443            // starting/ending ports to scan
 	hunters.Hunt(target, startPort, endPort) // invoke and Hunt for eggs
 
-	if len(opened) == 0 { // if len is 0, the port is closed/filtered
-		fmt.Println(asset.Red("All ports are Closed or Filtered."))
-	} else { // if len is not 0, port n is open
-		fmt.Printf("\nEggs found!\n")
-	}
-
-	// list and display the opened ports
-	for i := 0; i < len(opened); i++ {
-		fmt.Printf("%s%s\n", egg, string(asset.Green(opened[i])))
-	}
 } // END MAIN

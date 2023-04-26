@@ -30,10 +30,30 @@ func Hunt(target string, startPort, endPort int) {
 			continue
 		} // END IF
 
-		opened = append(opened, port) // append opened ports to slice
+		result := append(opened, port) // append opened ports to slice
 
 		conn.Close() // Closes the connection
-		// if a port is opened, this is displayedg
-		fmt.Printf("===============>           %s Port %s is open %s         <==============\n", asset.Egg, asset.Green(strconv.Itoa(port)), asset.Egg)
+
+		if len(result) == 0 { // if len is 0, the port is closed/filtered
+			fmt.Println(asset.Red("All ports are Closed or Filtered."))
+		} else { // if len is not 0, port n is open
+			// if a port is opened, this is displayedg
+			arrows_left := "===============>"
+			arrows_right := "<=============="
+			fmt.Printf(
+				"%s           %s Port %s is open %s         %s\n",
+				asset.Green(arrows_left),
+				asset.Egg,
+				asset.Green(strconv.Itoa(port)),
+				asset.Egg,
+				asset.Green(arrows_right),
+			)
+
+		}
+
+		// list and display the opened ports
+		for i := 0; i < len(opened); i++ {
+			fmt.Printf("%s%s\n", asset.Egg, string(asset.Green(opened[i])))
+		}
 	}
 }
