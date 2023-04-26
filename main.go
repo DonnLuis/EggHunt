@@ -2,17 +2,28 @@ package main
 
 import (
 	"fmt"
-	"net"
-	"strconv"
-	"time"
 
 	"github.com/fatih/color"
+
+	"egghunt/hunters"
 )
 
 func main() {
 
+	// tool title
+	title :=
+		`
+	▓█████   ▄████   ▄████  ██░ ██  █    ██  ███▄    █ ▄▄▄█████▓
+	▓█   ▀  ██▒ ▀█▒ ██▒ ▀█▒▓██░ ██▒ ██  ▓██▒ ██ ▀█   █ ▓  ██▒ ▓▒
+	▒███   ▒██░▄▄▄░▒██░▄▄▄░▒██▀▀██░▓██  ▒██░▓██  ▀█ ██▒▒ ▓██░ ▒░
+	▒▓█  ▄ ░▓█  ██▓░▓█  ██▓░▓█ ░██ ▓▓█  ░██░▓██▒  ▐▌██▒░ ▓██▓ ░ 
+	░▒████▒░▒▓███▀▒░▒▓███▀▒░▓█▒░██▓▒▒█████▓ ▒██░   ▓██░  ▒██▒ ░ 
+	░░ ▒░ ░ ░▒   ▒  ░▒   ▒  ▒ ░░▒░▒░▒▓▒ ▒ ▒ ░ ▒░   ▒ ▒   ▒ ░░   
+	░ ░  ░  ░   ░   ░   ░  ▒ ░▒░ ░░░▒░ ░ ░ ░ ░░   ░ ▒░    ░    
+	░   ░ ░   ░ ░ ░   ░  ░  ░░ ░ ░░░ ░ ░    ░   ░ ░   ░      
+	░  ░      ░       ░  ░  ░  ░   ░              ░          
+    `
 	// User's Warning
-
 	// ASCII WARNING taken from
 	// https://patorjk.com/software/taag/#p=display&f=Big%20Money-sw&t=WARNING
 	warning1 := `
@@ -38,52 +49,31 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 
 	// Emoji Unicodes
 	egg := "\U0001F95A" // egg emoji unicode
-	evil := "\U0001F47F"
+	evil := "\U0001F608"
 	opened := make([]int, 0)                         // summary of opened ports
 	green := color.New(color.FgGreen).SprintFunc()   // creates a green instance
 	red := color.New(color.FgRed).SprintFunc()       // creates a red instance
 	yellow := color.New(color.FgYellow).SprintFunc() // creates a yellow instance
+
 	// tool starts
 	fmt.Println(red(warning1))
 	fmt.Println(yellow(warning2))
-
+	fmt.Println(title)                                   // tool title
 	fmt.Printf("Ready for the %s hunt? %s\n", egg, evil) // The greeting
 	var target string                                    // target endpoint to scan
 	fmt.Print("Pick your hunting ground [target IP]: ")
 	fmt.Scanln(&target) // USER INPUT
 
-	startPort, endPort := 22, 443             // starting/ending ports to scan
-	timeout := time.Duration(2 * time.Second) // variable holding a 2 second duration
+	startPort, endPort := 22, 443            // starting/ending ports to scan
+	hunters.Hunt(target, startPort, endPort) // invoke and Hunt for eggs
 
-	// while (port) 80 < 443, port++
-	for port := startPort; port < endPort; port++ {
-		// displays if the checked port is closed or filtered.
-		addr := fmt.Sprintf("%s:%d", target, port)
-
-		/*
-		   net.DialTimeout(<network type>, <address>, <timeout value>
-		     => this function is used to attempt to connect to the port
-		        at the specified address
-		*/
-		conn, err := net.DialTimeout("tcp", addr, timeout)
-		if err != nil { // if err is not null/empty
-			fmt.Printf("Port %s is closed or filtered\n", red(strconv.Itoa(port)))
-			continue
-		} // END IF
-
-		opened = append(opened, port) // append opened ports to slice
-
-		conn.Close() // Closes the connection
-		// if a port is opened, this is displayed
-		fmt.Printf("===============>           %s Port %s is open %s         <==============\n", egg, green(strconv.Itoa(port)), egg)
-	} // END FOR
-
-	if len(opened) == 0 {
+	if len(opened) == 0 { // if len is 0, the port is closed/filtered
 		fmt.Println(red("All ports are Closed or Filtered."))
-	} else {
+	} else { // if len is not 0, port n is open
 		fmt.Printf("\nEggs found!\n")
 	}
 
+	// list and display the opened ports
 	for i := 0; i < len(opened); i++ {
 		fmt.Printf("%s%s\n", egg, string(green(opened[i])))
 	}
