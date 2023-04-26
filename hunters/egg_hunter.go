@@ -9,9 +9,11 @@ import (
 	"egghunt/asset"
 )
 
-func Hunt(target string, startPort, endPort int) {
-
-	//
+func Hunt(target string, startPort, endPort int, ch chan int) {
+	// help format how outputs look
+	arrows_left := "===============>"
+	arrows_right := "<=============="
+	// set the duration
 	timeout := time.Duration(2 * time.Second)
 	// Emoji Unicodes
 	opened := make([]int, 0) // summary of opened ports
@@ -26,34 +28,44 @@ func Hunt(target string, startPort, endPort int) {
 		*/
 		conn, err := net.DialTimeout("tcp", addr, timeout)
 		if err != nil { // if err is not null/empty
-			fmt.Printf("Port %s is closed or filtered\n", asset.Red(strconv.Itoa(port)))
+			fmt.Printf(
+				"Port %s is closed or filtered\n", 
+				asset.Red(strconv.Itoa(port)),
+			)
 			continue
 		} // END IF
 
-		result := append(opened, port) // append opened ports to slice
+		opened = append(opened, port) // append opened ports to slice
 
 		conn.Close() // Closes the connection
 
-		if len(result) == 0 { // if len is 0, the port is closed/filtered
-			fmt.Println(asset.Red("All ports are Closed or Filtered."))
-		} else { // if len is not 0, port n is open
-			// if a port is opened, this is displayedg
-			arrows_left := "===============>"
-			arrows_right := "<=============="
-			fmt.Printf(
-				"%s           %s Port %s is open %s         %s\n",
-				asset.Green(arrows_left),
-				asset.Egg,
-				asset.Green(strconv.Itoa(port)),
-				asset.Egg,
-				asset.Green(arrows_right),
-			)
+		// if a port is opened, this is displayedg
+		fmt.Printf(
+			"%s           %s Port %s is open %s         %s\n",
+			asset.Green(arrows_left),
+			asset.Egg,
+			asset.Green(strconv.Itoa(port)),
+			asset.Egg,
+			asset.Green(arrows_right),
+		)
 
-		}
+	} // END FOR
 
+	if len(opened) == 0 { // if len is 0, all ports are closed/filtered
+		fmt.Println(asset.Red("All ports are Closed or Filtered."))
+	} else {
 		// list and display the opened ports
-		for i := 0; i < len(opened); i++ {
-			fmt.Printf("%s%s\n", asset.Egg, string(asset.Green(opened[i])))
+		fmt.Printf("%s\n\tWhat a hunt!\nHere are the %s in your %s!\n%s\n",
+		"============================", 
+		asset.Egg, 
+		asset.Basket,
+		"============================",
+		)
+		// send the opened ports to the channel
+		for _, port := range opened {
+			ch <- port
 		}
 	}
-}
+
+	close(ch)
+} // END HUNT()

@@ -1,3 +1,8 @@
+/*
+Author: Luis Soto (github.com/DonnLuis)
+
+*/
+
 package main
 
 import (
@@ -55,7 +60,15 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 	fmt.Print("Pick your hunting ground [target IP]: ")
 	fmt.Scanln(&target) // USER INPUT
 
-	startPort, endPort := 22, 443               // starting/ending ports to scan
-	go hunters.Hunt(target, startPort, endPort) // invoke and Hunt for eggs
+	// The channel goroutine used to communicate between the go routine
+	// and the Hunt()
+	ch := make(chan int, 2048)
 
+	startPort, endPort := 22, 443               // starting/ending ports to scan
+	go hunters.Hunt(target, startPort, endPort, ch) // invoke and Hunt for eggs
+
+	// Receive the results from the channel
+	for openedPort := range ch {
+		fmt.Printf("%s%s\n", asset.Egg, string(asset.Green(openedPort)))
+	}
 } // END MAIN

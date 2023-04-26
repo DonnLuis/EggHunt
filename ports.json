@@ -1,0 +1,165 @@
+{
+    "ports": {
+        "20": {
+            "name": "FTP Data",
+            "description": "File Transfer Protocol (FTP) data channel",
+            "protocol": "TCP/UDP",
+            "status": "Official",
+            "source": "RFC 959"
+        },
+        "21": {
+            "name": "FTP Control",
+            "description": "File Transfer Protocol (FTP) control channel",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "RFC 959"
+        },
+        "22": {
+            "name": "SSH",
+            "description": "Secure Shell (SSH) protocol",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "RFC 4253"
+        },
+        "25": {
+            "name": "SMTP",
+            "description": "Simple Mail Transfer Protocol (SMTP)",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "RFC 5321"
+        },
+        "53": {
+            "name": "DNS",
+            "description": "Domain Name System (DNS) service",
+            "protocol": "TCP/UDP",
+            "status": "Official",
+            "source": "RFC 1035"
+        },
+        "80": {
+            "name": "HTTP",
+            "description": "Hypertext Transfer Protocol (HTTP) traffic",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "RFC 2616"
+        },
+        "8080": {
+            "name": "HTTP Alternate (HTTP Alt)",
+            "description": "Alternative port for HTTP traffic",
+            "protocol": "TCP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "110": {
+            "name": "POP3",
+            "description": "Post Office Protocol version 3 (POP3) service",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "RFC 1939"
+        },
+        "143": {
+            "name": "IMAP",
+            "description": "Internet Message Access Protocol (IMAP) service",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "RFC 3501"
+        },
+        "443": {
+            "name": "HTTPS",
+            "description": "HTTP Secure (HTTPS) traffic",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "RFC 2818"
+        },
+        "3306": {
+            "name": "MySQL",
+            "description": "MySQL database service",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "MySQL"
+        },
+        "5432": {
+            "name": "PostgreSQL",
+            "description": "PostgreSQL database service",
+            "protocol": "TCP/UDP",
+            "status": "Official",
+            "source": "PostgreSQL"
+        },
+        "27017": {
+            "name": "MongoDB",
+            "description": "MongoDB database service",
+            "protocol": "TCP",
+            "status": "Official",
+            "source": "MongoDB"
+        },
+        "27000": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27001": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27002": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27003": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27004": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27005": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27006": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27007": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27008": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        },
+        "27009": {
+            "name": "Steam Client",
+            "description": "Steam client connections",
+            "protocol": "UDP",
+            "status": "Unofficial",
+            "source": ""
+        }
+    }
+}
