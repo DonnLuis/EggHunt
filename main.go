@@ -11,12 +11,38 @@ import (
 
 func main() {
 
+	// User's Warning
+	warning1 := `
+ __       __   ______   _______   __    __  ______  __    __   ______  
+/  |  _  /  | /      \ /       \ /  \  /  |/      |/  \  /  | /      \ 
+$$ | / \ $$ |/$$$$$$  |$$$$$$$  |$$  \ $$ |$$$$$$/ $$  \ $$ |/$$$$$$  |
+$$ |/$  \$$ |$$ |__$$ |$$ |__$$ |$$$  \$$ |  $$ |  $$$  \$$ |$$ | _$$/ 
+$$ /$$$  $$ |$$    $$ |$$    $$ |$$$$  $$ |  $$ |  $$$$  $$ |$$ |/   |
+$$ $$/$$ $$ |$$$$$$$$ |$$$$$$$  |$$ $$ $$ |  $$ |  $$ $$ $$ |$$ |$$$$ |
+$$$$/  $$$$ |$$ |  $$ |$$ |  $$ |$$ |$$$$ | _$$ |_ $$ |$$$$ |$$ \__$$ |
+$$$/    $$$ |$$ |  $$ |$$ |  $$ |$$ | $$$ |/ $$   |$$ | $$$ |$$    $$/ 
+$$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/  
+
+`
+	warning2 :=
+		`
+		(Unless you have permission)
+		Use this tool only on your own systems, and no one else's.
+		I created this tool as a fun way to harden my own network.
+		This tool is not meant to be used to break laws.
+		You have been warned! 
+		`
+
 	// Emoji Unicodes
 	egg := "\U0001F95A" // egg emoji unicode
 	evil := "\U0001F47F"
-	opened := make([]int, 0)                       // summary of opened ports
-	green := color.New(color.FgGreen).SprintFunc() // creates a green instance
-	red := color.New(color.FgRed).SprintFunc()     // creates a red instance
+	opened := make([]int, 0)                         // summary of opened ports
+	green := color.New(color.FgGreen).SprintFunc()   // creates a green instance
+	red := color.New(color.FgRed).SprintFunc()       // creates a red instance
+	yellow := color.New(color.FgYellow).SprintFunc() // creates a yellow instance
+	// tool starts
+	fmt.Println(red(warning1))
+	fmt.Println(yellow(warning2))
 
 	fmt.Printf("Ready for the %s hunt? %s\n", egg, evil) // The greeting
 	var target string                                    // target endpoint to scan
