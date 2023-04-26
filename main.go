@@ -75,7 +75,12 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 		fmt.Printf("===============>           %s Port %s is open %s         <==============\n", egg, green(strconv.Itoa(port)), egg)
 	} // END FOR
 
-	fmt.Printf("\nEggs found!\n")
+	if len(opened) == 0 {
+		fmt.Println(red("All ports are Closed or Filtered."))
+	} else {
+		fmt.Printf("\nEggs found!\n")
+	}
+
 	for i := 0; i < len(opened); i++ {
 		fmt.Printf("%s%s\n", egg, string(green(opened[i])))
 	}
