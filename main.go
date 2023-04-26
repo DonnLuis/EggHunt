@@ -12,6 +12,9 @@ import (
 func main() {
 
 	// User's Warning
+
+	// ASCII WARNING taken from
+	// https://patorjk.com/software/taag/#p=display&f=Big%20Money-sw&t=WARNING
 	warning1 := `
  __       __   ______   _______   __    __  ______  __    __   ______  
 /  |  _  /  | /      \ /       \ /  \  /  |/      |/  \  /  | /      \ 
