@@ -46,16 +46,12 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 		You have been warned! 
 		`
 
-	// Emoji Unicodes
-	egg := "\U0001F95A" // egg emoji unicode
-	evil := "\U0001F608"
-
 	// tool starts
 	fmt.Println(asset.Red(warning1))
 	fmt.Println(asset.Yellow(warning2))
-	fmt.Println(title)                                   // tool title
-	fmt.Printf("Ready for the %s hunt? %s\n", egg, evil) // The greeting
-	var target string                                    // target endpoint to scan
+	fmt.Println(title)                                               // tool title
+	fmt.Printf("Ready for the %s hunt? %s\n", asset.Egg, asset.Evil) // The greeting
+	var target string                                                // target endpoint to scan
 	fmt.Print("Pick your hunting ground [target IP]: ")
 	fmt.Scanln(&target) // USER INPUT
 
