@@ -3,8 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/fatih/color"
-
+	"egghunt/asset"
 	"egghunt/hunters"
 )
 
@@ -50,14 +49,11 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 	// Emoji Unicodes
 	egg := "\U0001F95A" // egg emoji unicode
 	evil := "\U0001F608"
-	opened := make([]int, 0)                         // summary of opened ports
-	green := color.New(color.FgGreen).SprintFunc()   // creates a green instance
-	red := color.New(color.FgRed).SprintFunc()       // creates a red instance
-	yellow := color.New(color.FgYellow).SprintFunc() // creates a yellow instance
+	opened := make([]int, 0) // summary of opened ports
 
 	// tool starts
-	fmt.Println(red(warning1))
-	fmt.Println(yellow(warning2))
+	fmt.Println(asset.Red(warning1))
+	fmt.Println(asset.Yellow(warning2))
 	fmt.Println(title)                                   // tool title
 	fmt.Printf("Ready for the %s hunt? %s\n", egg, evil) // The greeting
 	var target string                                    // target endpoint to scan
@@ -68,13 +64,13 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 	hunters.Hunt(target, startPort, endPort) // invoke and Hunt for eggs
 
 	if len(opened) == 0 { // if len is 0, the port is closed/filtered
-		fmt.Println(red("All ports are Closed or Filtered."))
+		fmt.Println(asset.Red("All ports are Closed or Filtered."))
 	} else { // if len is not 0, port n is open
 		fmt.Printf("\nEggs found!\n")
 	}
 
 	// list and display the opened ports
 	for i := 0; i < len(opened); i++ {
-		fmt.Printf("%s%s\n", egg, string(green(opened[i])))
+		fmt.Printf("%s%s\n", egg, string(asset.Green(opened[i])))
 	}
 } // END MAIN
