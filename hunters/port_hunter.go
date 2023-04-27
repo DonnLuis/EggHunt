@@ -29,7 +29,7 @@ func Hunt(target string, startPort, endPort int, ch chan int) {
 		conn, err := net.DialTimeout("tcp", addr, timeout)
 		if err != nil { // if err is not null/empty
 			fmt.Printf(
-				"Port %s is closed or filtered\n", 
+				"Port %s is closed or filtered\n",
 				asset.Red(strconv.Itoa(port)),
 			)
 			continue
@@ -56,10 +56,10 @@ func Hunt(target string, startPort, endPort int, ch chan int) {
 	} else {
 		// list and display the opened ports
 		fmt.Printf("%s\n\tWhat a hunt!\nHere are the %s in your %s!\n%s\n",
-		"============================", 
-		asset.Egg, 
-		asset.Basket,
-		"============================",
+			"============================",
+			asset.Egg,
+			asset.Basket,
+			"============================",
 		)
 		// send the opened ports to the channel
 		for _, port := range opened {
