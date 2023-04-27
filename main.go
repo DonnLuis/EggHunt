@@ -10,7 +10,7 @@ import (
 
 	"egghunt/asset"
 	"egghunt/hunters"
-	"egghunt/ip"
+	ip "egghunt/ip/subnet"
 )
 
 func main() {

@@ -37,7 +37,7 @@ func Hunt(target string, startPort, endPort int, ch chan int) {
 
 		opened = append(opened, port) // append opened ports to slice
 
-		conn.Close() // Closes the connection
+		defer conn.Close() // Closes the connection
 
 		// if a port is opened, this is displayedg
 		fmt.Printf(
@@ -67,5 +67,5 @@ func Hunt(target string, startPort, endPort int, ch chan int) {
 		}
 	}
 
-	close(ch)
+	defer close(ch)
 } // END HUNT()
