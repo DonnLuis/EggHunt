@@ -3,60 +3,66 @@ package hunters
 import (
 	"fmt"
 	"net"
-	"strconv"
 	"time"
 
 	"egghunt/asset"
 )
 
 func Hunt(target string, startPort, endPort int, ch chan int) {
-	// help format how outputs look
-	arrows_left := "===============>"
-	arrows_right := "<=============="
-	// set the duration
-	timeout := time.Duration(2 * time.Second)
-	// Emoji Unicodes
-	opened := make([]int, 0) // summary of opened ports
+
+	timeout := time.Duration(2 * time.Second) // set the duration
+	opened := make([]int, 0)                  // summary of opened ports
+
+	fmt.Print("Eggs found: ")
 	for port := startPort; port < endPort; port++ {
 		// displays if the checked port is closed or filtered.
 		addr := fmt.Sprintf("%s:%d", target, port)
-
 		/*
 			   net.DialTimeout(<network type>, <address>, <timeout value>
-				 => this function is used to attempt to connect to the port
-					at the specified address
+				 => this functions starts a connection, with a timeout.
+
+		*/
+
+		/*
+			addr variable:
+					will hold the ip plus the port:
+						example: 192.168.1.1:<port 22, 23, 24, and so on>
+
+						the net.DialTimeout function will connect to the ip:port
+						through each iteration aswell. it will basically look like this through iteration
+						<ip>:22
+						<ip>:23
+						<ip>:24
+						<ip>:25
+						and so forth...
 		*/
 		conn, err := net.DialTimeout("tcp", addr, timeout)
 		if err != nil { // if err is not null/empty
-			fmt.Printf(
-				"Port %s is closed or filtered\n",
-				asset.Red(strconv.Itoa(port)),
-			)
 			continue
 		} // END IF
 
-		opened = append(opened, port) // append opened ports to slice
+		// append opened ports to slice
+		opened = append(opened, port)
 
-		defer conn.Close() // Closes the connection
+		// Closes the connection
+		defer conn.Close()
 
 		// if a port is opened, this is displayedg
 		fmt.Printf(
-			"%s           %s Port %s is open %s         %s\n",
-			asset.Green(arrows_left),
+			"%s",
 			asset.Egg,
-			asset.Green(strconv.Itoa(port)),
-			asset.Egg,
-			asset.Green(arrows_right),
 		)
 
 	} // END FOR
 
-	if len(opened) == 0 { // if len is 0, all ports are closed/filtered
+	// if len is 0, ports are closed or filtered
+	if len(opened) == 0 {
 		fmt.Println(asset.Red("All ports are Closed or Filtered."))
+		// else, they are opened
 	} else {
 		// list and display the opened ports
 		fmt.Printf("%s\n\tWhat a hunt!\nHere are the %s in your %s!\n%s\n",
-			"============================",
+			"\n============================",
 			asset.Egg,
 			asset.Basket,
 			"============================",
@@ -66,6 +72,6 @@ func Hunt(target string, startPort, endPort int, ch chan int) {
 			ch <- port
 		}
 	}
-
+	// before the function returns, close the channel.
 	defer close(ch)
 } // END HUNT()

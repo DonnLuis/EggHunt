@@ -10,7 +10,6 @@ import (
 
 	"egghunt/asset"
 	"egghunt/hunters"
-	ip "egghunt/ip/subnet"
 )
 
 func main() {
@@ -55,14 +54,14 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 	// tool starts
 	fmt.Println(asset.Red(warning1))
 	fmt.Println(asset.Yellow(warning2))
-	fmt.Println(title)                                               // tool title
-	fmt.Printf("Ready for the %s hunt? %s\n", asset.Egg, asset.Evil) // The greeting
-	var target string                                                // target endpoint to scan
-	fmt.Print("Pick your hunting ground [target IP]: ")
+	fmt.Println(title)                                                                                     // tool title
+	fmt.Printf("===============[ Ready for the %s hunt? %s ]===================\n", asset.Egg, asset.Evil) // The greeting
+	var target string                                                                                      // target endpoint to scan
+	fmt.Print("Pick the hunting ground [target IP]: ")
 	fmt.Scanln(&target) // USER INPUT
 
 	// ask user if they want to check a specific subnet
-	ip.IP("192.168.1.0", 24) // testing data, erase when done testing
+	//ip.IP("192.168.1.0", 24) // testing data, erase when done testing
 
 	// The channel goroutine used to communicate between the go routine
 	// and the Hunt()
