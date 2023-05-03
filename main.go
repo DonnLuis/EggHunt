@@ -10,6 +10,7 @@ import (
 
 	"egghunt/asset"
 	"egghunt/hunters"
+  "egghunt/recon"
 )
 
 func main() {
@@ -56,7 +57,9 @@ $$/      $$/ $$/   $$/ $$/   $$/ $$/   $$/ $$$$$$/ $$/   $$/  $$$$$$/
 	fmt.Println(asset.Yellow(warning2))
 	fmt.Println(title)                                                                                     // tool title
 	fmt.Printf("===============[ Ready for the %s hunt? %s ]===================\n", asset.Egg, asset.Evil) // The greeting
-	var target string                                                                                      // target endpoint to scan
+	var target string                                   
+  fmt.Printf("OS: %s\n",recon.GetOS())
+  // target endpoint to scan
 	fmt.Print("Pick the hunting ground [target IP]: ")
 	fmt.Scanln(&target) // USER INPUT
 
