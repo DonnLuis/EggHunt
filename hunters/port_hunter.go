@@ -36,7 +36,7 @@ func Hunt(target string, startPort, endPort int, ch chan int) {
 						<ip>:25
 						and so forth...
 		*/
-		conn, err := net.DialTimeout("tcp", addr, timeout)
+		conn, err := net.DialTimeout("tcp", addr /* <ip>:<port> */, timeout)
 		if err != nil { // if err is not null/empty
 			continue
 		} // END IF

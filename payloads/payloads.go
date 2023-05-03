@@ -1,9 +1,9 @@
 package payloads
 
 import (
-  "fmt"
+	"fmt"
 )
 
 func Greet() {
-  
+	fmt.Println("Hello from payload Greets!")
 }
