@@ -1,9 +1,9 @@
 package recon
 
 import (
-  "runtime"
+	"runtime"
 )
 
 func GetOS() string {
-  return runtime.GOOS
+	return runtime.GOOS
 }
