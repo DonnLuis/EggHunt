@@ -10,22 +10,24 @@ import (
 	"github.com/spf13/cobra"
 )
 
-
-
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "hunter",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "A fun way to harden your network",
+	Long: `A fun way to harden your network using an interactive cli. For example:
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+			The hunter of ports is a fun way to scan for opened ports. Everytime a port comes back opened,
+			an eggs pops up. In this instance, Eggs are the ports!`,
 }
+
+// version Command
+var versionCmd = &cobra.Command{
+	Use: "version",
+	Short: "Display the version of hunter",
+	Long: "Display the current version of the hunter cli tool",
+	Run: func(cmd *cobra.Command, args []string){
+		fmt.Println("Hunter v1.0")
+	},
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
@@ -37,6 +39,9 @@ func Execute() {
 }
 
 func init() {
+	// commands
+	rootCmd.AddCommand(versionCmd)
+
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
@@ -46,6 +51,7 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.Flags().BoolP("hunter", "h", false, "hunter help")
 }
 
 

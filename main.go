@@ -16,7 +16,7 @@ import (
 func main() {
 
 	// warning
-	asset.Warn() // display warning of using this tool
+	assets.Warn() // display warning of using this tool
 
 	fmt.Printf("===============[ Ready for the %s hunt? %s ]===================\n", asset.Egg, asset.Evil) // The greeting
 	var target string

@@ -11,7 +11,7 @@ import (
 func Hunt(target string, startPort, endPort int, ch chan int) {
 
 	timeout := time.Duration(2 * time.Second) // set the duration
-	opened := make([]int, 0)                  // summary of opened ports
+	opened := make([]int)                  // summary of opened ports
 
 	fmt.Print("Eggs found: ")
 	for port := startPort; port < endPort; port++ {
