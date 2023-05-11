@@ -11,12 +11,12 @@ import (
 func Hunt(target string, startPort, endPort int, ch chan int) {
 
 	timeout := time.Duration(2 * time.Second) // set the duration
-	opened := make([]int, 0)                  // summary of opened ports
+	opened := make([]int, 0)                  // creates empty slice (hence 0)
 
 	fmt.Print("Eggs found: ")
-	for port := startPort; port < endPort; port++ {
+	for port := startPort; port < endPort; port++ { // iterate through specified ports
 		// displays if the checked port is closed or filtered.
-		addr := fmt.Sprintf("%s:%d", target, port)
+		addr := fmt.Sprintf("%s:%d", target, port) //fmt.Sprintf() only formats and does not display output
 		/*
 			   net.DialTimeout(<network type>, <address>, <timeout value>
 				 => this functions starts a connection, with a timeout.
@@ -41,11 +41,18 @@ func Hunt(target string, startPort, endPort int, ch chan int) {
 			continue
 		} // END IF
 
+		conn2, err := net.DialTimeout("udp", addr, timeout)
+		if err != nil {
+			fmt.Printf("Error: %s", err)
+			continue
+		}
+
 		// append opened ports to slice
 		opened = append(opened, port)
 
 		// Closes the connection
 		defer conn.Close()
+		defer conn2.Close()
 
 		// if a port is opened, this is displayedg
 		fmt.Printf(
@@ -70,8 +77,8 @@ func Hunt(target string, startPort, endPort int, ch chan int) {
 		// send the opened ports to the channel
 		for _, port := range opened {
 			ch <- port
-		}
-	}
+		} // END for
+	} // END else
 	// before the function returns, close the channel.
 	defer close(ch)
 } // END HUNT()
