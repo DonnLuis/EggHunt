@@ -7,16 +7,16 @@ Author: Luis Soto (github.com/DonnLuis)
 package main
 
 import (
-	"egghunt/asset"
+	asset "egghunt/assets"
 	"egghunt/hunters"
-	"egghunt/recon"
+	"egghunt/hunters/cmd/recon"
 	"fmt"
 )
 
 func main() {
 
 	// warning
-	assets.Warn() // display warning of using this tool
+	asset.Warn() // display warning of using this tool
 
 	fmt.Printf("===============[ Ready for the %s hunt? %s ]===================\n", asset.Egg, asset.Evil) // The greeting
 	var target string
